@@ -16,8 +16,9 @@ class UniversitiesSeeder extends Seeder
      */
     public function run(): void
     {
-        // Clear existing data
-        DB::table('universities')->delete();
+        // truncate existing table data to avoid duplicates
+        $this->command->info('Starting truncating existing table...');
+        DB::table('universities')->truncate();
 
         // Path to the universities resources
         $universitiesPath = $this->getUniversitiesPath();
