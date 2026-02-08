@@ -27,8 +27,6 @@ composer require karimsamir/cortex_universities
 ### 2. Publish the Assets
 
 ```bash
-# Publish configuration file
-php artisan vendor:publish --tag="cortex-universities-config"
 
 # Publish migrations
 php artisan vendor:publish --tag="cortex-universities-migrations"
