@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('universities', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('alt_name')->nullable();
+            $table->string('name', 256);
+            $table->string('alt_name', 256)->nullable();
             $table->string('country');
             $table->string('state')->nullable();
             $table->string('street')->nullable();
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('funding')->nullable();
             $table->json('languages')->nullable();
             $table->text('academic_year')->nullable();
-            $table->string('accrediting_agency')->nullable();
+            $table->text('accrediting_agency')->nullable();
             $table->timestamps();
 
             // Indexes for better performance
