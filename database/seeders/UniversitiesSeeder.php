@@ -97,24 +97,25 @@ class UniversitiesSeeder extends Seeder
     }
 
     /**
-     * Get the path to the universities resources.
+     * Get the absolute path to universities resources.
      */
     protected function getUniversitiesPath(): string
     {
-        // Try to find the rinvex/universities package
+        // Try to find the rinvex/universities package using absolute paths
         $possiblePaths = [
-            base_path('../packages/universities/resources'), // Relative to cortex
+            // base_path('../packages/universities/resources'), // Relative to cortex
             base_path('vendor/rinvex/universities/resources'), // In vendor
-            base_path('../../packages/universities/resources'), // Another relative path
+            dirname(__DIR__, 3) . '/universities/resources', // Relative to this package
         ];
 
         foreach ($possiblePaths as $path) {
             if (is_dir($path)) {
-                return $path;
+                return realpath($path);
             }
         }
 
         // Fallback to the known location in the current structure
-        return dirname(__DIR__, 4) . '/universities/resources';
+        $fallbackPath = dirname(__DIR__, 3) . '/universities/resources';
+        return is_dir($fallbackPath) ? realpath($fallbackPath) : $fallbackPath;
     }
 }
