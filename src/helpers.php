@@ -18,32 +18,32 @@ if (! function_exists('university')) {
      */
     function university($identifier, $asModel = true, $useCache = true)
     {
-        $cacheKey = is_numeric($identifier) 
-            ? "university.id.{$identifier}" 
+        $cacheKey = is_numeric($identifier)
+            ? "university.id.{$identifier}"
             : "university.name." . md5(strtolower((string) $identifier));
-        
+
         $cacheDuration = config('cortex_universities.cache_duration');
-        
+
         if ($useCache && $cacheDuration) {
             $cached = Cache::get($cacheKey);
             if ($cached !== null) {
                 return $asModel ? $cached : $cached->toArray();
             }
         }
-        
+
         $query = University::query();
-        
+
         // If identifier is numeric, search by ID, otherwise search by name
         if (is_numeric($identifier)) {
             $university = $query->find($identifier);
         } else {
             $university = $query->where('name', $identifier)->first();
         }
-        
+
         if ($university && $useCache && $cacheDuration) {
             Cache::put($cacheKey, $university, $cacheDuration);
         }
-        
+
         return $asModel ? $university : $university?->toArray();
     }
 }
@@ -60,31 +60,31 @@ if (! function_exists('universities')) {
      */
     function universities($countryCode = null, $asModels = true, $useCache = true)
     {
-        $cacheKey = $countryCode 
+        $cacheKey = $countryCode
             ? "universities.country." . md5(strtolower($countryCode))
             : "universities.all";
-        
+
         $cacheDuration = config('cortex_universities.cache_duration');
-        
+
         if ($useCache && $cacheDuration) {
             $cached = Cache::get($cacheKey);
             if ($cached !== null) {
                 return $asModels ? $cached : $cached->toArray();
             }
         }
-        
+
         $query = University::query();
-        
+
         if ($countryCode) {
             $query->where('country', $countryCode);
         }
-        
+
         $universities = $query->get();
-        
+
         if ($universities->isNotEmpty() && $useCache && $cacheDuration) {
             Cache::put($cacheKey, $universities, $cacheDuration);
         }
-        
+
         return $asModels ? $universities : $universities->toArray();
     }
 }
@@ -101,9 +101,9 @@ if (! function_exists('clearUniversitiesCache')) {
         if ($key) {
             return Cache::forget($key);
         }
-        
+
         // Clear all universities-related cache
-        return Cache::forget('universities.all') && 
+        return Cache::forget('universities.all') &&
                Cache::forget('universities.country.*') &&
                Cache::forget('university.*');
     }
@@ -120,25 +120,25 @@ if (! function_exists('getUniversitiesByCountry')) {
     {
         $cacheKey = 'universities.by_country';
         $cacheDuration = config('cortex_universities.cache_duration');
-        
+
         if ($useCache && $cacheDuration) {
             $cached = Cache::get($cacheKey);
             if ($cached !== null) {
                 return $cached;
             }
         }
-        
+
         $universities = University::query()
             ->select('country', University::raw('COUNT(*) as count'))
             ->groupBy('country')
             ->orderBy('country')
             ->get()
             ->keyBy('country');
-        
+
         if ($useCache && $cacheDuration) {
             Cache::put($cacheKey, $universities, $cacheDuration);
         }
-        
+
         return $universities->toArray();
     }
 }
@@ -157,19 +157,19 @@ if (! function_exists('searchUniversities')) {
         if (!config('cortex_universities.search.enabled')) {
             return $useCache ? collect([]) : [];
         }
-        
+
         $cacheKey = 'universities.search.' . md5($query . implode(',', $fields));
         $cacheDuration = config('cortex_universities.cache_duration');
-        
+
         if ($useCache && $cacheDuration) {
             $cached = Cache::get($cacheKey);
             if ($cached !== null) {
                 return $cached;
             }
         }
-        
+
         $dbQuery = University::query();
-        
+
         if (config('cortex_universities.search.fuzzy')) {
             // Fuzzy search across specified fields
             $dbQuery->where(function ($q) use ($query, $fields) {
@@ -185,13 +185,13 @@ if (! function_exists('searchUniversities')) {
                 }
             });
         }
-        
+
         $results = $dbQuery->limit(50)->get();
-        
+
         if ($useCache && $cacheDuration) {
             Cache::put($cacheKey, $results, $cacheDuration);
         }
-        
+
         return $results;
     }
 }
