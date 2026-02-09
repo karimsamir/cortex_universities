@@ -37,6 +37,9 @@ class UniversitiesSeeder extends Seeder
         $processedCountries = 0;
 
         foreach ($countryDirs as $countryDir) {
+
+            $batch = [];
+
             $countryCode = basename($countryDir);
             $jsonFiles = glob($countryDir . '/*.json');
 
@@ -54,13 +57,19 @@ class UniversitiesSeeder extends Seeder
                     // Transform the data to match our database structure
                     $universityData = $this->transformUniversityData($data);
 
-                    University::create($universityData);
+                    $batch[] = $universityData;
                     $countryCount++;
                     $totalUniversities++;
 
                 } catch (\Exception $e) {
                     $this->command->error("Error processing file {$jsonFile}: " . $e->getMessage());
                 }
+            }
+
+
+            // Insert all records in one batch
+            if (!empty($batch)) {
+                University::insert($batch);
             }
 
             $processedCountries++;
