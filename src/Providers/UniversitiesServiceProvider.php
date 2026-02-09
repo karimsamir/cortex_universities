@@ -16,6 +16,8 @@ class UniversitiesServiceProvider extends ServiceProvider
     {
         $this->registerPublishables();
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        // Force load your helpers after rinvex/universities
+        require_once __DIR__.'/../helpers.php';
     }
 
     /**
