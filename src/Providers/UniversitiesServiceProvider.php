@@ -34,22 +34,22 @@ class UniversitiesServiceProvider extends ServiceProvider
     /**
      * Register the package's publishable resources.
      */
-    // protected function registerPublishables(): void
-    // {
-    //     // $this->publishes([
-    //     //     __DIR__.'/../../config/cortex_universities.php' => config_path('cortex_universities.php'),
-    //     // ], ['cortex-universities', 'cortex-universities-config']);
+    protected function registerPublishables(): void
+    {
+        $this->publishes([
+            __DIR__.'/../../config/cortex_universities.php' => config_path('cortex_universities.php'),
+        ], ['cortex-universities', 'cortex-universities-config']);
 
-    //     // $this->publishes([
-    //     //     __DIR__.'/../../database/migrations' => database_path('migrations'),
-    //     // ], ['cortex-universities', 'cortex-universities-migrations']);
+        $this->publishes([
+            __DIR__.'/../../database/migrations' => database_path('migrations'),
+        ], ['cortex-universities', 'cortex-universities-migrations']);
 
-    //     // $this->publishes([
-    //     //     __DIR__.'/../../database/seeders' => database_path('seeders'),
-    //     // ], ['cortex-universities', 'cortex-universities-seeders']);
+        $this->publishes([
+            __DIR__.'/../../database/seeders' => database_path('seeders'),
+        ], ['cortex-universities', 'cortex-universities-seeders']);
 
-    //     // $this->publishes([
-    //     //     __DIR__.'/../../src/Models' => app_path('Models'),
-    //     // ], ['cortex-universities', 'cortex-universities-models']);
-    // }
+        $this->publishes([
+            __DIR__.'/../../src/Models' => app_path('Models'),
+        ], ['cortex-universities', 'cortex-universities-models']);
+    }
 }
