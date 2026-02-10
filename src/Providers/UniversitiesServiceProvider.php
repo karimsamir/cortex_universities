@@ -18,7 +18,8 @@ class UniversitiesServiceProvider extends ServiceProvider
     {
         $this->registerPublishables();
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-                $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/adminarea.php'));
+
+        $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/web/adminarea.php'));
         // $this->loadViewsFrom(__DIR__.'/../../../resources/views', 'cortex_universities');
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/university');
         // Force load your helpers after rinvex/universities
@@ -32,14 +33,14 @@ class UniversitiesServiceProvider extends ServiceProvider
     {
         // Merge config
         $this->mergeConfigFrom(
-            __DIR__.'/../../config/universities_module.php',
+            __DIR__.'/../../config/config.php',
             'universities_module'
         );
 
-        // Bind eloquent models to IoC container
-        $this->registerModels([
-            'rinvex.universities.university' => University::class,
-        ]);
+        // // Bind eloquent models to IoC container
+        // $this->registerModels([
+        //     'rinvex.universities.university' => University::class,
+        // ]);
     }
 
     /**
@@ -48,7 +49,7 @@ class UniversitiesServiceProvider extends ServiceProvider
     protected function registerPublishables(): void
     {
         $this->publishes([
-            __DIR__.'/../../config/cortex_universities.php' => config_path('cortex_universities.php'),
+            __DIR__.'/../../config/cortex_universities.php' => config_path('config.php'),
         ], ['cortex-universities', 'cortex-universities-config']);
 
         $this->publishes([

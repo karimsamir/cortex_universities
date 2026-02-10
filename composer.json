@@ -90,7 +90,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Cortex\\UniversitiesModule\\Providers\\UniversitiesModuleServiceProvider"
+        "Cortex\\UniversitiesModule\\Providers\\UniversitiesServiceProvider"
       ]
     }
   },
