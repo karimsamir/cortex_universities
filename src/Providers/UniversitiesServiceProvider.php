@@ -6,6 +6,7 @@ namespace Cortex\UniversitiesModule\Providers;
 
 use Cortex\UniversitiesModule\Models\BaseUniversity as University;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Rinvex\Support\Traits\ConsoleTools;
 
 class UniversitiesServiceProvider extends ServiceProvider
@@ -24,6 +25,11 @@ class UniversitiesServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/university');
         // Force load your helpers after rinvex/universities
         require_once __DIR__.'/../helpers.php';
+
+        // Map relations
+        Relation::morphMap([
+            'university' => config('cortex.universities.models.university'),
+        ]);
     }
 
     /**
