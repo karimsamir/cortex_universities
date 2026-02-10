@@ -1,6 +1,6 @@
 {
-  "name": "cortex/universitiesModule",
-  "description": "Cortex UniversitiesModule is a Laravel package that integrates the rinvex/universitiesModule dataset into a relational database.",
+  "name": "cortex-universitiesModule",
+  "description": "Cortex UniversitiesModule is a Laravel package that integrates the rinvex/universities dataset into a relational database.",
   "type": "cortex-module",
   "keywords": [
     "rinvex",
