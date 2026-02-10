@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Cortex\Universities\Models\University;
+use Cortex\UniversitiesModule\Models\University;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -14,7 +14,7 @@ if (! function_exists('university')) {
      * @param bool $asModel
      * @param bool $useCache
      *
-     * @return \Cortex\Universities\Models\University|array|null
+     * @return \Cortex\UniversitiesModule\Models\University|array|null
      */
     function university($identifier, $asModel = true, $useCache = true)
     {

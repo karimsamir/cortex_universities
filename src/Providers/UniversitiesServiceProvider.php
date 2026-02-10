@@ -2,13 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Universities\Providers;
+namespace Cortex\UniversitiesModule\Providers;
 
+use Cortex\UniversitiesModule\Models\BaseUniversity as University;
 use Illuminate\Support\ServiceProvider;
-use Cortex\Universities\Models\University;
+use Rinvex\Support\Traits\ConsoleTools;
 
 class UniversitiesServiceProvider extends ServiceProvider
 {
+    use ConsoleTools;
     /**
      * Bootstrap any application services.
      */
@@ -16,6 +18,9 @@ class UniversitiesServiceProvider extends ServiceProvider
     {
         $this->registerPublishables();
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+                $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/adminarea.php'));
+        // $this->loadViewsFrom(__DIR__.'/../../../resources/views', 'cortex_universities');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/university');
         // Force load your helpers after rinvex/universities
         require_once __DIR__.'/../helpers.php';
     }
@@ -25,10 +30,16 @@ class UniversitiesServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Merge config
         $this->mergeConfigFrom(
-            __DIR__.'/../../config/cortex_universities.php',
-            'cortex_universities'
+            __DIR__.'/../../config/universities_module.php',
+            'universities_module'
         );
+
+        // Bind eloquent models to IoC container
+        $this->registerModels([
+            'rinvex.universities.university' => University::class,
+        ]);
     }
 
     /**

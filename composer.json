@@ -1,14 +1,25 @@
 {
-  "name": "karimsamir/cortex_universities",
-  "description": "Cortex Universities is a Laravel package that integrates the rinvex/universities dataset into a relational database.",
+  "name": "cortex/universitiesModule",
+  "description": "Cortex UniversitiesModule is a Laravel package that integrates the rinvex/universitiesModule dataset into a relational database.",
   "type": "cortex-module",
   "keywords": [
+    "rinvex",
     "cortex",
+    "flexible",
+    "framework",
     "laravel",
-    "universities",
+    "themes",
+    "solution",
+    "extension",
+    "enterprise",
+    "application",
+    "multi-lingual",
+    "multi-tenant",
+    "bootstrap",
+    "module",
+    "universitiesModule",
     "education",
-    "dataset",
-    "rinvex"
+    "dataset"
   ],
   "license": "MIT",
   "homepage": "https://github.com/karimsamir/cortex-universities",
@@ -27,25 +38,45 @@
     "illuminate/database": "^11.0.0 || ^12.0.0",
     "illuminate/support": "^11.0.0 || ^12.0.0",
     "illuminate/console": "^11.0.0 || ^12.0.0",
-    "rinvex/universities": "^6.0.0"
+    "rinvex/universities": "^6.0.0",
+    "cortex/foundation": "dev-master",
+    "diglactic/laravel-breadcrumbs": "^10.0.0",
+    "illuminate/auth": "^10.0.0 || ^11.0.0 || ^12.0.0",
+    "illuminate/console": "^10.0.0 || ^11.0.0 || ^12.0.0",
+    "illuminate/http": "^10.0.0 || ^11.0.0 || ^12.0.0",
+    "illuminate/routing": "^10.0.0 || ^11.0.0 || ^12.0.0",
+    "illuminate/support": "^10.0.0 || ^11.0.0 || ^12.0.0",
+    "laravelcollective/html": "dev-master",
+    "league/fractal": "^0.20.0",
+    "proengsoft/laravel-jsvalidation": "^4.10.2",
+    "rinvex/laravel-composer": "dev-master",
+    "rinvex/laravel-menus": "dev-master",
+    "rinvex/laravel-support": "dev-master",
+    "rinvex/tmp-josephsilber-bouncer": "dev-master",
+    "spatie/laravel-activitylog": "^4.7.0",
+    "yajra/laravel-datatables-fractal": "^12.0.1",
+    "yajra/laravel-datatables-buttons": "^12.3.1",
+    "yajra/laravel-datatables-html": "^12.7.0",
+    "yajra/laravel-datatables-oracle": "^12.6.3"
   },
   "version": "1.0.0",
   "require-dev": {
-    "phpunit/phpunit": "^11.0.0 || ^12.0.0"
+    "codedungeon/phpunit-result-printer": "^0.32.0",
+    "phpunit/phpunit": "^10.1.0"
   },
-  "replace": { "rinvex/universities": "*" },
   "autoload": {
     "files": [
       "src/helpers.php"
     ],
     "psr-4": {
-      "Cortex\\Universities\\": "src/",
-      "Cortex\\Universities\\Database\\Seeders\\": "database/seeders/"
+      "Cortex\\UniversitiesModule\\": "src/",
+      "Cortex\\UniversitiesModule\\Database\\Factories\\": "database/factories/",
+      "Cortex\\UniversitiesModule\\Database\\Seeders\\": "database/seeders/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Cortex\\Universities\\Tests\\": "tests"
+      "Cortex\\UniversitiesModule\\Tests\\": "tests"
     }
   },
   "scripts": {
@@ -59,7 +90,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Cortex\\Universities\\Providers\\UniversitiesServiceProvider"
+        "Cortex\\UniversitiesModule\\Providers\\UniversitiesModuleServiceProvider"
       ]
     }
   },
