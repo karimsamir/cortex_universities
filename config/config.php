@@ -11,7 +11,7 @@ return [
 
     // Universities Models
     'models' => [
-        'University' => \Cortex\UniversitiesModule\Models\University::class,
+        'university' => \Cortex\UniversitiesModule\Models\University::class,
     ],
 
     /*

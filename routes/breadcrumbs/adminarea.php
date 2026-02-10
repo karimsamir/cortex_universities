@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Diglactic\Breadcrumbs\Generator;
-use Cortex\Universities\Models\University;
+use Cortex\UniversitiesModule\Models\University;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 
 Breadcrumbs::for('adminarea.cortex.universities.universities.index', function (Generator $breadcrumbs) {

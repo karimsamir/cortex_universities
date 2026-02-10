@@ -40,7 +40,7 @@ class UniversitiesServiceProvider extends ServiceProvider
         // Merge config
         $this->mergeConfigFrom(
             __DIR__.'/../../config/config.php',
-            'universities_module'
+            'cortex.universities'
         );
 
         // // Bind eloquent models to IoC container
