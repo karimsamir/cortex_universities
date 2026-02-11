@@ -80,7 +80,12 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/phpunit"
+    "test": "vendor/bin/phpunit",
+    "post-update-cmd": [
+      "php artisan migrate",
+      "php artisan db:seed --class='Cortex\\Universities\\Database\\Seeders\\UniversitiesSeeder'",
+      "chmod -R 777 storage"
+    ]
   },
   "config": {
     "sort-packages": true,
