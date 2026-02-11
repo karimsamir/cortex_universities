@@ -53,4 +53,14 @@ class UniversitiesDataTable extends AbstractDataTable
             'updated_at' => ['title' => trans('cortex/universities::common.updated_at'), 'render' => "moment(data).format('YYYY-MM-DD, hh:mm:ss A')"],
         ];
     }
+
+    /**
+     * Get Ajax form.
+     *
+     * @return string
+     */
+    protected function getAjaxForm(): string
+    {
+        return '#adminarea-cortex-universities-universities-filters-form';
+    }
 }
