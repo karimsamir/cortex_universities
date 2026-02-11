@@ -50,7 +50,7 @@ php artisan migrate
 ### 4. Import University Data
 
 ```bash
-php artisan db:seed --class="Cortex\\UniversitiesModule\\Database\\Seeders\\UniversitiesSeeder"
+php artisan db:seed --class="Cortex\\Universities\\Database\\Seeders\\UniversitiesSeeder"
 ```
 
 ## Configuration
@@ -73,7 +73,7 @@ return [
 ### Basic Queries
 
 ```php
-use Cortex\UniversitiesModule\Models\University;
+use Cortex\Universities\Models\University;
 
 // Get all universities
 $universities = University::all();
@@ -164,7 +164,7 @@ You can change the table name in the configuration file:
 You can extend the University model by creating your own model that extends it:
 
 ```php
-use Cortex\UniversitiesModule\Models\University as BaseUniversity;
+use Cortex\Universities\Models\University as BaseUniversity;
 
 class University extends BaseUniversity
 {

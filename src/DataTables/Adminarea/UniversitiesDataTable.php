@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Cortex\UniversitiesModule\DataTables\Adminarea;
+namespace Cortex\Universities\DataTables\Adminarea;
 
 use Illuminate\Http\JsonResponse;
-use Cortex\UniversitiesModule\Models\University;
+use Cortex\Universities\Models\University;
 use Cortex\Foundation\DataTables\AbstractDataTable;
-use Cortex\UniversitiesModule\Transformers\Adminarea\UniversityTransformer;
+use Cortex\Universities\Transformers\Adminarea\UniversityTransformer;
 
 class UniversitiesDataTable extends AbstractDataTable
 {

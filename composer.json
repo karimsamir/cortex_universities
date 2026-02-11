@@ -1,6 +1,6 @@
 {
   "name": "cortex/universities",
-  "description": "Cortex UniversitiesModule is a Laravel package that integrates the rinvex/universities dataset into a relational database.",
+  "description": "Cortex Universities is a Laravel package that integrates the rinvex/universities dataset into a relational database.",
   "type": "cortex-module",
   "keywords": [
     "rinvex",
@@ -17,7 +17,7 @@
     "multi-tenant",
     "bootstrap",
     "module",
-    "universitiesModule",
+    "Universities",
     "education",
     "dataset"
   ],
@@ -69,14 +69,14 @@
       "src/helpers.php"
     ],
     "psr-4": {
-      "Cortex\\UniversitiesModule\\": "src/",
-      "Cortex\\UniversitiesModule\\Database\\Factories\\": "database/factories/",
-      "Cortex\\UniversitiesModule\\Database\\Seeders\\": "database/seeders/"
+      "Cortex\\Universities\\": "src/",
+      "Cortex\\Universities\\Database\\Factories\\": "database/factories/",
+      "Cortex\\Universities\\Database\\Seeders\\": "database/seeders/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Cortex\\UniversitiesModule\\Tests\\": "tests"
+      "Cortex\\Universities\\Tests\\": "tests"
     }
   },
   "scripts": {
@@ -90,7 +90,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Cortex\\UniversitiesModule\\Providers\\UniversitiesServiceProvider"
+        "Cortex\\Universities\\Providers\\UniversitiesServiceProvider"
       ]
     },
     "installer-paths": {

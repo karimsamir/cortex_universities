@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cortex\UniversitiesModule\Providers;
+namespace Cortex\Universities\Providers;
 
-use Cortex\UniversitiesModule\Models\University;
+use Cortex\Universities\Models\University;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Rinvex\Support\Traits\ConsoleTools;

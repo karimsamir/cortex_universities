@@ -7,7 +7,7 @@
 @endsection
 
 @push('inline-scripts')
-    {!! JsValidator::formRequest(Cortex\UniversitiesModule\Http\Requests\Adminarea\UniversityFormRequest::class)->selector(
+    {!! JsValidator::formRequest(Cortex\Universities\Http\Requests\Adminarea\UniversityFormRequest::class)->selector(
             "#adminarea-cortex-universities-universities-create-form, #adminarea-cortex-universities-universities-{$university->getRouteKey()}-update-form",
         )->ignore('.skip-validation') !!}
 @endpush

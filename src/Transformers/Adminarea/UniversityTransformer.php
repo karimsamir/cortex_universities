@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Cortex\UniversitiesModule\Transformers\Adminarea;
+namespace Cortex\Universities\Transformers\Adminarea;
 
 use Rinvex\Support\Traits\Escaper;
-use Cortex\UniversitiesModule\Models\University;
+use Cortex\Universities\Models\University;
 use League\Fractal\TransformerAbstract;
 
 class UniversityTransformer extends TransformerAbstract
@@ -15,7 +15,7 @@ class UniversityTransformer extends TransformerAbstract
     /**
      * Transform university model.
      *
-     * @param \Cortex\UniversitiesModule\Models\University $university
+     * @param \Cortex\Universities\Models\University $university
      *
      * @throws \Exception
      *

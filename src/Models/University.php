@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Cortex\UniversitiesModule\Models;
+namespace Cortex\Universities\Models;
 
 use Spatie\Activitylog\LogOptions;
 use Cortex\Foundation\Traits\Auditable;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Cortex\UniversitiesModule\Events\UniversityCreated;
-use Cortex\UniversitiesModule\Events\UniversityDeleted;
-use Cortex\UniversitiesModule\Events\UniversityUpdated;
-use Cortex\UniversitiesModule\Events\UniversityRestored;
+use Cortex\Universities\Events\UniversityCreated;
+use Cortex\Universities\Events\UniversityDeleted;
+use Cortex\Universities\Events\UniversityUpdated;
+use Cortex\Universities\Events\UniversityRestored;
 use Rinvex\Support\Traits\ValidatingTrait;
 
 use Illuminate\Database\Eloquent\Model;

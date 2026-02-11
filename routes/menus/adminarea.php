@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Rinvex\Menus\Models\MenuItem;
-use Cortex\UniversitiesModule\Models\University;
+use Cortex\Universities\Models\University;
 use Rinvex\Menus\Models\MenuGenerator;
 
 Menu::register('adminarea.sidebar', function (MenuGenerator $menu) {

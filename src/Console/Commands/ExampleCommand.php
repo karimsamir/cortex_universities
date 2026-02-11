@@ -1,6 +1,6 @@
 <?php
 
-namespace Cortex\UniversitiesModule\Console\Commands;
+namespace Cortex\Universities\Console\Commands;
 
 use Illuminate\Console\Command;
 

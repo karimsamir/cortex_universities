@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Cortex\UniversitiesModule\Http\Controllers\Adminarea;
+namespace Cortex\Universities\Http\Controllers\Adminarea;
 
 use Illuminate\Http\Request;
-use Cortex\UniversitiesModule\Models\University;
+use Cortex\Universities\Models\University;
 use Cortex\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
 use Cortex\Foundation\Importers\InsertImporter;
 use Cortex\Foundation\Http\Requests\ImportFormRequest;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
-use Cortex\UniversitiesModule\DataTables\Adminarea\UniversitiesDataTable;
-use Cortex\UniversitiesModule\Http\Requests\Adminarea\UniversityFormRequest;
+use Cortex\Universities\DataTables\Adminarea\UniversitiesDataTable;
+use Cortex\Universities\Http\Requests\Adminarea\UniversityFormRequest;
 
 class UniversitiesController extends AuthorizedController
 {
@@ -24,7 +24,7 @@ class UniversitiesController extends AuthorizedController
     /**
      * List all universities.
      *
-     * @param \Cortex\UniversitiesModule\DataTables\Adminarea\UniversitiesDataTable $universitiesDataTable
+     * @param \Cortex\Universities\DataTables\Adminarea\UniversitiesDataTable $universitiesDataTable
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
@@ -40,7 +40,7 @@ class UniversitiesController extends AuthorizedController
     /**
      * List university logs.
      *
-     * @param \Cortex\UniversitiesModule\Models\University          $university
+     * @param \Cortex\Universities\Models\University          $university
      * @param \Cortex\Foundation\DataTables\LogsDataTable $logsDataTable
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
@@ -59,7 +59,7 @@ class UniversitiesController extends AuthorizedController
      *
      * @param \Cortex\Foundation\Http\Requests\ImportFormRequest $request
      * @param \Cortex\Foundation\Importers\InsertImporter        $importer
-     * @param \Cortex\UniversitiesModule\Models\University                 $university
+     * @param \Cortex\Universities\Models\University                 $university
      *
      * @return void
      */
@@ -72,7 +72,7 @@ class UniversitiesController extends AuthorizedController
      * Create new university.
      *
      * @param \Illuminate\Http\Request           $request
-     * @param \Cortex\UniversitiesModule\Models\University $university
+     * @param \Cortex\Universities\Models\University $university
      *
      * @return \Illuminate\View\View
      */
@@ -85,7 +85,7 @@ class UniversitiesController extends AuthorizedController
      * Edit given university.
      *
      * @param \Illuminate\Http\Request           $request
-     * @param \Cortex\UniversitiesModule\Models\University $university
+     * @param \Cortex\Universities\Models\University $university
      *
      * @return \Illuminate\View\View
      */
@@ -98,7 +98,7 @@ class UniversitiesController extends AuthorizedController
      * Show university create/edit form.
      *
      * @param \Illuminate\Http\Request           $request
-     * @param \Cortex\UniversitiesModule\Models\University $university
+     * @param \Cortex\Universities\Models\University $university
      *
      * @return \Illuminate\View\View
      */
@@ -116,8 +116,8 @@ class UniversitiesController extends AuthorizedController
     /**
      * Store new university.
      *
-     * @param \Cortex\UniversitiesModule\Http\Requests\Adminarea\UniversityFormRequest $request
-     * @param \Cortex\UniversitiesModule\Models\University                             $university
+     * @param \Cortex\Universities\Http\Requests\Adminarea\UniversityFormRequest $request
+     * @param \Cortex\Universities\Models\University                             $university
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
@@ -129,8 +129,8 @@ class UniversitiesController extends AuthorizedController
     /**
      * Update given university.
      *
-     * @param \Cortex\UniversitiesModule\Http\Requests\Adminarea\UniversityFormRequest $request
-     * @param \Cortex\UniversitiesModule\Models\University                             $university
+     * @param \Cortex\Universities\Http\Requests\Adminarea\UniversityFormRequest $request
+     * @param \Cortex\Universities\Models\University                             $university
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
@@ -143,7 +143,7 @@ class UniversitiesController extends AuthorizedController
      * Process stored/updated university.
      *
      * @param \Cortex\Foundation\Http\FormRequest $request
-     * @param \Cortex\UniversitiesModule\Models\University  $university
+     * @param \Cortex\Universities\Models\University  $university
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
@@ -164,7 +164,7 @@ class UniversitiesController extends AuthorizedController
     /**
      * Destroy given university.
      *
-     * @param \Cortex\UniversitiesModule\Models\University $university
+     * @param \Cortex\Universities\Models\University $university
      *
      * @throws \Exception
      *

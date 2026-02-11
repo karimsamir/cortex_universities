@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Cortex\UniversitiesModule\Http\Controllers\Adminarea\UniversitiesController;
+use Cortex\Universities\Http\Controllers\Adminarea\UniversitiesController;
 
 Route::domain('{adminarea}')->group(function () {
     Route::name('adminarea.')
