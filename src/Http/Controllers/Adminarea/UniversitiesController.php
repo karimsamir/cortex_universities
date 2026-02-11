@@ -107,10 +107,7 @@ class UniversitiesController extends AuthorizedController
         if (! $university->exists && $request->has('replicate') && $replicated = $university->resolveRouteBinding($request->input('replicate'))) {
             $university = $replicated->replicate();
         }
-
-        $ParentUniversities = app('cortex.universities.university')->pluck('name', 'id');
-
-        return view('cortex/universities::adminarea.pages.university', compact('university', 'ParentUniversities'));
+        return view('cortex/universities::adminarea.pages.university', compact('university'));
     }
 
     /**

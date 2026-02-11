@@ -15,7 +15,7 @@ use Rinvex\Support\Traits\ValidatingTrait;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
-
+use Rinvex\Support\Traits\HashidsTrait;
 
 /**
  *
@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Cache;
 class University extends Model
 {
     use Auditable;
+    use HashidsTrait;
     use LogsActivity;
     use ValidatingTrait;
 

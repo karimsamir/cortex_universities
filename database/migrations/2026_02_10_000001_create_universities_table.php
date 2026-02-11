@@ -13,8 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $tableName = config('cortex.universities.tables.universities');
-        Schema::create($tableName, function (Blueprint $table) {
+        Schema::create(config('cortex.universities.tables.universities'), function (Blueprint $table) {
             $table->id();
             $table->string('name', 256);
             $table->string('alt_name', 256)->nullable();
@@ -32,7 +31,7 @@ return new class extends Migration
             $table->json('languages')->nullable();
             $table->text('academic_year')->nullable();
             $table->text('accrediting_agency')->nullable();
-            $table->timestamps();
+            $table->auditableAndTimestamps();
 
 
             // Indexes for better performance
@@ -40,10 +39,6 @@ return new class extends Migration
             $table->index('state');
             $table->index('funding');
             $table->index('name');
-        });
-
-        Schema::table($tableName, function (Blueprint $table) {
-            $table->auditable();
         });
     }
 

@@ -20,7 +20,7 @@ class UniversitiesServiceProvider extends ServiceProvider
         $this->registerPublishables();
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
-        $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/web/adminarea.php'));
+        // $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/web/adminarea.php'));
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/university');
         // Force load your helpers after rinvex/universities
@@ -54,7 +54,6 @@ class UniversitiesServiceProvider extends ServiceProvider
      */
     protected function registerPublishables(): void
     {
-        return;
         $this->publishes([
             __DIR__.'/../../config/config.php' => config_path('universities.php'),
         ], ['cortex-universities', 'cortex-universities-config']);

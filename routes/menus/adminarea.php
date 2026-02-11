@@ -7,7 +7,7 @@ use Cortex\Universities\Models\University;
 use Rinvex\Menus\Models\MenuGenerator;
 
 Menu::register('adminarea.sidebar', function (MenuGenerator $menu) {
-    $menu->findByTitleOrAdd(trans('cortex/foundation::common.taxonomy'), 30, 'fa fa-arrows', 'header', [], [], function (MenuItem $dropdown) {
+    $menu->findByTitleOrAdd(trans('cortex/foundation::common.taxonomy'), 35, 'fa fa-arrows', 'header', [], [], function (MenuItem $dropdown) {
         $dropdown->route(['adminarea.cortex.universities.universities.index'], trans('cortex/universities::common.universities'), 10, 'fa fa-sitemap')->ifCan('list', app('cortex.universities.university'))->activateOnRoute('adminarea.cortex.universities.universities');
     });
 });

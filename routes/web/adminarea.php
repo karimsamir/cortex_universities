@@ -19,11 +19,6 @@ Route::domain('{adminarea}')->group(function () {
                  Route::put('{university}/edit')->name('update')->uses([UniversitiesController::class, 'update']);
                  Route::match(['get', 'post'], '{university}/logs')->name('logs')->uses([UniversitiesController::class, 'logs']);
                  Route::delete('{university}')->name('destroy')->uses([UniversitiesController::class, 'destroy']);
-
-                 Route::name('ajax.')->prefix('ajax')->group(function () {
-                     Route::get('{university}/children')->name('get.children')->uses([UniversitiesController::class, 'nodeChildren']);
-                     Route::post('{university}/update-position')->name('update.position')->uses([UniversitiesController::class, 'updateNodePosition']);
-                 });
              });
          });
 });
