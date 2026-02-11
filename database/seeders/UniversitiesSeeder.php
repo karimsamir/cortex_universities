@@ -18,7 +18,7 @@ class UniversitiesSeeder extends Seeder
     {
         // truncate existing table data to avoid duplicates
         $this->command->info('Starting truncating existing table...');
-        DB::table('universities')->truncate();
+        DB::table(config('cortex.universities.tables.universities'))->truncate();
 
         // Path to the universities resources
         $universitiesPath = $this->getUniversitiesPath();

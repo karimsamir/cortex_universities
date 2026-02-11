@@ -22,7 +22,7 @@ if (! function_exists('university')) {
             ? "university.id.{$identifier}"
             : "university.name." . md5(strtolower((string) $identifier));
 
-        $cacheDuration = config('cortex_universities.cache_duration');
+        $cacheDuration = config('cortex.universities.cache_duration');
 
         if ($useCache && $cacheDuration) {
             $cached = Cache::get($cacheKey);
@@ -64,7 +64,7 @@ if (! function_exists('universities')) {
             ? "universities.country." . md5(strtolower($countryCode))
             : "universities.all";
 
-        $cacheDuration = config('cortex_universities.cache_duration');
+        $cacheDuration = config('cortex.universities.cache_duration');
 
         if ($useCache && $cacheDuration) {
             $cached = Cache::get($cacheKey);
@@ -119,7 +119,7 @@ if (! function_exists('getUniversitiesByCountry')) {
     function getUniversitiesByCountry($useCache = true): array
     {
         $cacheKey = 'universities.by_country';
-        $cacheDuration = config('cortex_universities.cache_duration');
+        $cacheDuration = config('cortex.universities.cache_duration');
 
         if ($useCache && $cacheDuration) {
             $cached = Cache::get($cacheKey);
@@ -154,12 +154,12 @@ if (! function_exists('searchUniversities')) {
      */
     function searchUniversities(string $query, array $fields = ['name', 'country', 'state', 'city'], $useCache = true)
     {
-        if (!config('cortex_universities.search.enabled')) {
+        if (!config('cortex.universities.search.enabled')) {
             return $useCache ? collect([]) : [];
         }
 
         $cacheKey = 'universities.search.' . md5($query . implode(',', $fields));
-        $cacheDuration = config('cortex_universities.cache_duration');
+        $cacheDuration = config('cortex.universities.cache_duration');
 
         if ($useCache && $cacheDuration) {
             $cached = Cache::get($cacheKey);
@@ -170,7 +170,7 @@ if (! function_exists('searchUniversities')) {
 
         $dbQuery = University::query();
 
-        if (config('cortex_universities.search.fuzzy')) {
+        if (config('cortex.universities.search.fuzzy')) {
             // Fuzzy search across specified fields
             $dbQuery->where(function ($q) use ($query, $fields) {
                 foreach ($fields as $field) {

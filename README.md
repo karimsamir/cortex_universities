@@ -55,7 +55,7 @@ php artisan db:seed --class="Cortex\\Universities\\Database\\Seeders\\Universiti
 
 ## Configuration
 
-After publishing the config file, you can customize the package behavior in `config/cortex_universities.php`:
+After publishing the config file, you can customize the package behavior in `config/config.php`:
 
 ```php
 return [

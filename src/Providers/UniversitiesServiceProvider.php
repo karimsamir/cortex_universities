@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\UniversitiesModule\Providers;
 
-use Cortex\UniversitiesModule\Models\BaseUniversity as University;
+use Cortex\UniversitiesModule\Models\University;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Rinvex\Support\Traits\ConsoleTools;
@@ -21,7 +21,7 @@ class UniversitiesServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
         $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/web/adminarea.php'));
-        // $this->loadViewsFrom(__DIR__.'/../../../resources/views', 'cortex_universities');
+
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/university');
         // Force load your helpers after rinvex/universities
         require_once __DIR__.'/../helpers.php';
@@ -55,7 +55,7 @@ class UniversitiesServiceProvider extends ServiceProvider
     protected function registerPublishables(): void
     {
         $this->publishes([
-            __DIR__.'/../../config/cortex_universities.php' => config_path('config.php'),
+            __DIR__.'/../../config/config.php' => config_path('universities.php'),
         ], ['cortex-universities', 'cortex-universities-config']);
 
         $this->publishes([

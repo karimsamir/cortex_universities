@@ -13,7 +13,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('universities', function (Blueprint $table) {
+        $tableName = config('cortex.universities.tables.universities');
+        Schema::create($tableName, function (Blueprint $table) {
             $table->id();
             $table->string('name', 256);
             $table->string('alt_name', 256)->nullable();
@@ -33,11 +34,16 @@ return new class extends Migration
             $table->text('accrediting_agency')->nullable();
             $table->timestamps();
 
+
             // Indexes for better performance
             $table->index('country');
             $table->index('state');
             $table->index('funding');
             $table->index('name');
+        });
+
+        Schema::table($tableName, function (Blueprint $table) {
+            $table->auditable();
         });
     }
 
@@ -46,6 +52,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('universities');
+        Schema::dropIfExists(config('cortex.universities.tables.universities'));
     }
 };
