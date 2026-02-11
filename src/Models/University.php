@@ -32,12 +32,12 @@ class University extends Model
      *
      * @var array
      */
-    // protected $dispatchesEvents = [
-    //     'created' => UniversityCreated::class,
-    //     'updated' => UniversityUpdated::class,
-    //     'deleted' => UniversityDeleted::class,
-    //     'restored' => UniversityRestored::class,
-    // ];
+    protected $dispatchesEvents = [
+        'created' => UniversityCreated::class,
+        'updated' => UniversityUpdated::class,
+        'deleted' => UniversityDeleted::class,
+        'restored' => UniversityRestored::class,
+    ];
 
 
     protected $fillable = [
