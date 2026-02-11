@@ -50,7 +50,7 @@ php artisan migrate
 ### 4. Import University Data
 
 ```bash
-php artisan db:seed --class="Cortex\\Universities\\Database\\Seeders\\UniversitiesSeeder"
+php artisan db:seed --class="Cortex\\UniversitiesModule\\Database\\Seeders\\UniversitiesSeeder"
 ```
 
 ## Configuration
