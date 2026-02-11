@@ -30,7 +30,7 @@ class UniversitiesDataTable extends AbstractDataTable
     {
         return datatables($this->query())
             ->setTransformer(app($this->transformer))
-            ->orderColumn('name', 'name->"$.'.app()->getLocale().'" $1')
+            ->orderColumn('name', 'name $1')
             ->whitelist(array_keys($this->getColumns()))
             ->make(true);
     }
@@ -43,14 +43,14 @@ class UniversitiesDataTable extends AbstractDataTable
     protected function getColumns(): array
     {
         $link = config('cortex.foundation.route.locale_prefix')
-            ? '"<a href=\""+routes.route(\'adminarea.cortex.categories.categories.edit\', {university: full.id, locale: \''.$this->request()->segment(1).'\'})+"\">"+data+"</a>"'
-            : '"<a href=\""+routes.route(\'adminarea.cortex.categories.categories.edit\', {university: full.id})+"\">"+data+"</a>"';
+            ? '"<a href=\""+routes.route(\'adminarea.cortex.universities.universities.edit\', {university: full.id, locale: \''.$this->request()->segment(1).'\'})+"\">"+data+"</a>"'
+            : '"<a href=\""+routes.route(\'adminarea.cortex.universities.universities.edit\', {university: full.id})+"\">"+data+"</a>"';
 
         return [
             'id' => ['checkboxes' => json_decode('{"selectRow": true}'), 'exportable' => false, 'printable' => false],
-            'name' => ['title' => trans('cortex/categories::common.name'), 'render' => $link, 'responsivePriority' => 0],
-            'created_at' => ['title' => trans('cortex/categories::common.created_at'), 'render' => "moment(data).format('YYYY-MM-DD, hh:mm:ss A')"],
-            'updated_at' => ['title' => trans('cortex/categories::common.updated_at'), 'render' => "moment(data).format('YYYY-MM-DD, hh:mm:ss A')"],
+            'name' => ['title' => trans('cortex/universities::common.name'), 'render' => $link, 'responsivePriority' => 0],
+            'created_at' => ['title' => trans('cortex/universities::common.created_at'), 'render' => "moment(data).format('YYYY-MM-DD, hh:mm:ss A')"],
+            'updated_at' => ['title' => trans('cortex/universities::common.updated_at'), 'render' => "moment(data).format('YYYY-MM-DD, hh:mm:ss A')"],
         ];
     }
 }

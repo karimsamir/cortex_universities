@@ -28,7 +28,7 @@ class UniversityFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        $university = $this->route('university') ?? app('rinvex.universities.university');
+        $university = $this->route('university') ?? app('cortex.universities.university');
         $university->updateRulesUniques();
 
         return $university->getRules();

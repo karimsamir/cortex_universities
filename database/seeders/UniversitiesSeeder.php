@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Universities\Database\Seeders;
+namespace Cortex\UniversitiesModule\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Cortex\Universities\Models\University;
+use Cortex\UniversitiesModule\Models\University;
 
 class UniversitiesSeeder extends Seeder
 {

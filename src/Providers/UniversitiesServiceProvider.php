@@ -43,10 +43,10 @@ class UniversitiesServiceProvider extends ServiceProvider
             'cortex.universities'
         );
 
-        // // Bind eloquent models to IoC container
-        // $this->registerModels([
-        //     'rinvex.universities.university' => University::class,
-        // ]);
+        // Bind eloquent models to IoC container
+        $this->registerModels([
+            'cortex.universities.university' => University::class,
+        ]);
     }
 
     /**

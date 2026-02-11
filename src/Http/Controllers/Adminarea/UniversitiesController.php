@@ -19,7 +19,7 @@ class UniversitiesController extends AuthorizedController
     /**
      * {@inheritdoc}
      */
-    protected $resource = 'rinvex.universities.models.university';
+    protected $resource = 'cortex.universities.models.university';
 
     /**
      * List all universities.
@@ -108,7 +108,7 @@ class UniversitiesController extends AuthorizedController
             $university = $replicated->replicate();
         }
 
-        $ParentUniversities = app('rinvex.universities.university')->pluck('name', 'id');
+        $ParentUniversities = app('cortex.universities.university')->pluck('name', 'id');
 
         return view('cortex/universities::adminarea.pages.university', compact('university', 'ParentUniversities'));
     }

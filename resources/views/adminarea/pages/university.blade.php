@@ -3,11 +3,11 @@
 
 {{-- Page Title --}}
 @section('title')
-    {{ extract_title(Breadcrumbs::render()) }}
+    {{-- {{ extract_title(Breadcrumbs::render()) }} --}}
 @endsection
 
 @push('inline-scripts')
-    {!! JsValidator::formRequest(Cortex\Universities\Http\Requests\Adminarea\UniversityFormRequest::class)->selector("#adminarea-cortex-universities-universities-create-form, #adminarea-cortex-universities-universities-{$university->getRouteKey()}-update-form")->ignore('.skip-validation') !!}
+    {!! JsValidator::formRequest(Cortex\UniversitiesModule\Http\Requests\Adminarea\UniversityFormRequest::class)->selector("#adminarea-cortex-universities-universities-create-form, #adminarea-cortex-universities-universities-{$university->getRouteKey()}-update-form")->ignore('.skip-validation') !!}
 @endpush
 
 {{-- Main Content --}}
@@ -17,7 +17,7 @@
 
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>{{ Breadcrumbs::render() }}</h1>
+            {{-- <h1>{{ Breadcrumbs::render() }}</h1> --}}
         </section>
 
         {{-- Main content --}}
