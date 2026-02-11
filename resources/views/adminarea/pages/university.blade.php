@@ -20,7 +20,7 @@
 
     <div class="content-wrapper">
         <section class="content-header">
-            {{-- <h1>{{ Breadcrumbs::render() }}</h1> --}}
+            <h1>{{ Breadcrumbs::render() }}</h1>
         </section>
 
         {{-- Main content --}}
