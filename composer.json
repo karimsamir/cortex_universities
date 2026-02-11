@@ -92,6 +92,11 @@
       "providers": [
         "Cortex\\UniversitiesModule\\Providers\\UniversitiesServiceProvider"
       ]
+    },
+    "installer-paths": {
+      "custom/path/to/package/": [
+        "app/modules/cortex"
+      ]
     }
   },
   "minimum-stability": "stable",
