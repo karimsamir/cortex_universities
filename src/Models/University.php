@@ -16,6 +16,7 @@ use Rinvex\Support\Traits\ValidatingTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Rinvex\Support\Traits\HashidsTrait;
+use Rinvex\Support\Traits\Macroable;
 
 /**
  *
@@ -27,6 +28,8 @@ class University extends Model
     use HashidsTrait;
     use LogsActivity;
     use ValidatingTrait;
+    use Macroable;
+
 
     /**
      * The event map for the model.
