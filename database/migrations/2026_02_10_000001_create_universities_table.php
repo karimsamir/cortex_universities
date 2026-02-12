@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 256);
             $table->string('alt_name', 256)->nullable();
-            $table->string('slug', 256)->nullable();
+            $table->string('slug', 256)->unique();
             $table->string('country', 100);
             $table->string('country_code', 10);
             $table->string('state', 100)->nullable();
