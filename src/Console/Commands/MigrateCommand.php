@@ -31,8 +31,6 @@ class MigrateCommand extends Command
      */
     public function handle(): void
     {
-        parent::handle();
-
         $path = config('cortex.universities.autoload_migrations') ?
             realpath(__DIR__.'/../../../database/migrations') :
             $this->laravel->databasePath('migrations/cortex/universities');

@@ -31,8 +31,6 @@ class PublishCommand extends Command
      */
     public function handle(): void
     {
-        parent::handle();
-
         collect($this->option('resource') ?: ['config', 'lang', 'views', 'migrations'])->each(function ($resource) {
             $this->call('vendor:publish', ['--tag' => "cortex/universities::{$resource}", '--force' => $this->option('force')]);
         });
