@@ -28,7 +28,12 @@ class UniversitiesDataTable extends AbstractDataTable
      */
     public function ajax(): JsonResponse
     {
-        return datatables($this->query())
+        $query = $this->query();
+        
+        if (! empty($this->request()->input('country_code'))) {
+            $query->where('country_code', $this->request()->input('country_code'));
+        }
+        return datatables($query)
             ->setTransformer(app($this->transformer))
             ->orderColumn('name', 'name $1')
             ->whitelist(array_keys($this->getColumns()))

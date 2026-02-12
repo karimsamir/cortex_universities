@@ -30,11 +30,20 @@ class UniversitiesController extends AuthorizedController
      */
     public function index(UniversitiesDataTable $universitiesDataTable)
     {
+        $countries = collect(countries())->map(function ($country, $code) {
+            return [
+                'id' => $code,
+                'text' => $country['name'],
+                'emoji' => $country['emoji'],
+            ];
+        })->values();
+        
         return $universitiesDataTable->with([
             'id' => 'adminarea-cortex-universities-universities-index',
+            'countries' => $countries,
             'routePrefix' => 'adminarea.cortex.universities.universities',
             'pusher' => ['entity' => 'university', 'channel' => 'cortex.universities.universities.index'],
-        ])->render('cortex/foundation::adminarea.pages.datatable-index');
+        ])->render('cortex/universities::adminarea.pages.universities');
     }
 
     /**
