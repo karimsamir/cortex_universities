@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Cortex\Universities\Console\Commands;
 
+use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
-use Cortex\Universities\Console\Commands\RollbackCommand as BaseRollbackCommand;
 
 #[AsCommand(name: 'cortex:rollback:universities')]
-class RollbackCommand extends BaseRollbackCommand
+class RollbackCommand extends command
 {
     /**
      * The name and signature of the console command.

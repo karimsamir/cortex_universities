@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Cortex\Universities\Console\Commands;
 
 use Symfony\Component\Console\Attribute\AsCommand;
-use Cortex\Universities\Console\Commands\PublishCommand as BasePublishCommand;
+use Illuminate\Console\Command;
 
 #[AsCommand(name: 'cortex:publish:universities')]
-class PublishCommand extends BasePublishCommand
+class PublishCommand extends Command
 {
     /**
      * The name and signature of the console command.

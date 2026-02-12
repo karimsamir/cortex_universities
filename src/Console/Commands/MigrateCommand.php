@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Cortex\Universities\Console\Commands;
 
 use Symfony\Component\Console\Attribute\AsCommand;
-use Cortex\Universities\Console\Commands\MigrateCommand as BaseMigrateCommand;
+use Illuminate\Console\Command;
 
 #[AsCommand(name: 'cortex:migrate:universities')]
-class MigrateCommand extends BaseMigrateCommand
+class MigrateCommand extends Command
 {
     /**
      * The name and signature of the console command.
