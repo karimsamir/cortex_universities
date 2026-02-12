@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Cortex\Universities\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Cortex\Universities\Models\University;
 
 class UniversitiesSeeder extends Seeder
@@ -16,9 +14,8 @@ class UniversitiesSeeder extends Seeder
      */
     public function run(): void
     {
-        // truncate existing table data to avoid duplicates
-        $this->command->info('Starting truncating existing table...');
-        DB::table(config('cortex.universities.tables.universities'))->truncate();
+        // Update existing table data
+        $this->command->info('Starting updating existing table...');
 
         // Path to the universities resources
         $universitiesPath = $this->getUniversitiesPath();
@@ -37,7 +34,6 @@ class UniversitiesSeeder extends Seeder
         $processedCountries = 0;
 
         foreach ($countryDirs as $countryDir) {
-
             $batch = [];
 
             $countryCode = basename($countryDir);
@@ -47,12 +43,19 @@ class UniversitiesSeeder extends Seeder
 
             foreach ($jsonFiles as $jsonFile) {
                 try {
+
+                    // Get file name without .json extension
+                    $slug = basename($jsonFile, '.json');
+
                     $data = json_decode(file_get_contents($jsonFile), true);
 
                     if (!$data) {
                         $this->command->warn("Invalid JSON file: {$jsonFile}");
                         continue;
                     }
+
+                    $data["slug"] = $slug;
+                    $data["country_code"] = $countryCode;
 
                     // Transform the data to match our database structure
                     $universityData = $this->transformUniversityData($data);
@@ -67,9 +70,9 @@ class UniversitiesSeeder extends Seeder
             }
 
 
-            // Insert all records in one batch
+            // Upsert all records in one batch based on slug
             if (!empty($batch)) {
-                University::insert($batch);
+                University::upsert($batch, 'slug');
             }
 
             $processedCountries++;
@@ -87,6 +90,9 @@ class UniversitiesSeeder extends Seeder
         return [
             'name' => $data['name'] ?? null,
             'alt_name' => $data['alt_name'] ?? null,
+            'slug' => $data['slug'] ?? null,
+            'country' => $data['country'] ?? null,
+            'country_code' => $data['country_code'] ?? null,
             'country' => $data['country'] ?? null,
             'state' => $data['state'] ?? null,
             'street' => $data['address']['street'] ?? null,
@@ -94,9 +100,9 @@ class UniversitiesSeeder extends Seeder
             'province' => $data['address']['province'] ?? null,
             'postal_code' => $data['address']['postal_code'] ?? null,
             'telephone' => $data['contact']['telephone'] ?? null,
+            'fax' => $data['contact']['fax'] ?? null,
             'website' => $data['contact']['website'] ?? null,
             'email' => $data['contact']['email'] ?? null,
-            'fax' => $data['contact']['fax'] ?? null,
             'funding' => $data['funding'] ?? null,
             'languages' => $data['languages'] ?? null,
             'academic_year' => $data['academic_year'] ?? null,
