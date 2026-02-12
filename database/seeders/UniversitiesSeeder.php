@@ -72,7 +72,11 @@ class UniversitiesSeeder extends Seeder
 
             // Upsert all records in one batch based on slug
             if (!empty($batch)) {
-                University::upsert($batch, 'slug');
+                University::upsert(
+                    $batch,
+                    ['slug'],   // Unique key
+                    []          // No columns to update → do nothing if exists
+                );
             }
 
             $processedCountries++;
