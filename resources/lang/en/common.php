@@ -5,6 +5,7 @@ declare(strict_types=1);
 return [
 
     'name' => 'Name',
+    'slug' => 'Slug',
     'alt_name' => 'Alternative Name',
     'country' => 'Country',
     'state' => 'State',

@@ -10,6 +10,11 @@
     {!! JsValidator::formRequest(Cortex\Universities\Http\Requests\Adminarea\UniversityFormRequest::class)->selector(
             "#adminarea-cortex-universities-universities-create-form, #adminarea-cortex-universities-universities-{$university->getRouteKey()}-update-form",
         )->ignore('.skip-validation') !!}
+
+    <script>
+        window.countries = @json($countries);
+        window.selectedCountry = '{{ old('country_code', $university->country_code) }}';
+    </script>
 @endpush
 
 {{-- Main Content --}}
@@ -61,8 +66,22 @@
 
                             </div>
 
-                        </div>
+                            <div class="col-md-4">
 
+                                {{-- Slug --}}
+                                <div class="form-group{{ $errors->has('slug') ? ' has-error' : '' }}">
+                                    {{ Form::label('slug', trans('cortex/universities::common.slug'), ['class' => 'control-label']) }}
+                                    {{ Form::text('slug', null, ['class' => 'form-control', 'placeholder' => trans('cortex/universities::common.slug'), 'required' => 'required']) }}
+
+                                    @if ($errors->has('slug'))
+                                        <span class="help-block">{{ $errors->first('slug') }}</span>
+                                    @endif
+                                </div>
+
+
+                            </div>
+
+                        </div>
                         <div class="row">
 
                             <div class="col-md-4">
@@ -85,13 +104,14 @@
 
                             <div class="col-md-4">
 
-                                {{-- country --}}
-                                <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
-                                    {{ Form::label('country', trans('cortex/universities::common.country'), ['class' => 'control-label']) }}
-                                    {{ Form::text('country', null, ['class' => 'form-control', 'placeholder' => trans('cortex/universities::common.country'), 'required' => 'required', 'autofocus' => 'autofocus']) }}
+                                {{-- Country Code --}}
+                                <div class="form-group{{ $errors->has('country_code') ? ' has-error' : '' }}">
+                                    {{ Form::label('country_code', trans('cortex/auth::common.country'), ['class' => 'control-label']) }}
+                                    {{ Form::hidden('country_code', '', ['class' => 'skip-validation', 'id' => 'country_code_hidden']) }}
+                                    {{ Form::select('country_code', [], null, ['class' => 'form-control select2', 'placeholder' => trans('cortex/auth::common.select_country'), 'data-allow-clear' => 'true', 'data-width' => '100%']) }}
 
-                                    @if ($errors->has('country'))
-                                        <span class="help-block">{{ $errors->first('country') }}</span>
+                                    @if ($errors->has('country_code'))
+                                        <span class="help-block">{{ $errors->first('country_code') }}</span>
                                     @endif
                                 </div>
 

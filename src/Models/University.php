@@ -44,7 +44,9 @@ class University extends Model
     protected $fillable = [
         'name',
         'alt_name',
+        'slug',
         'country',
+        'country_code',
         'state',
         'street',
         'city',
@@ -100,7 +102,9 @@ class University extends Model
         $this->mergeRules([
             'name' => 'required|string|max:256',
             'alt_name' => 'nullable|string|max:256',
-            'country' => 'required|string|max:255',
+            'slug' => 'required|string|max:256',
+            'country' => 'nullable|string|max:255',
+            'country_code' => 'required|string|max:10',
             'state' => 'nullable|string|max:255',
             'street' => 'nullable|string|max:255',
             'city' => 'nullable|string|max:255',
@@ -117,6 +121,16 @@ class University extends Model
         ]);
 
         parent::__construct($attributes);
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**

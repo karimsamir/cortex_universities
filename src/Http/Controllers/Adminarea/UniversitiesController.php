@@ -37,7 +37,7 @@ class UniversitiesController extends AuthorizedController
                 'emoji' => $country['emoji'],
             ];
         })->values();
-        
+
         return $universitiesDataTable->with([
             'id' => 'adminarea-cortex-universities-universities-index',
             'countries' => $countries,
@@ -113,10 +113,18 @@ class UniversitiesController extends AuthorizedController
      */
     protected function form(Request $request, University $university)
     {
+        $countries = collect(countries())->map(function ($country, $code) {
+            return [
+                'id' => $code,
+                'text' => $country['name'],
+                'emoji' => $country['emoji'],
+            ];
+        })->values();
+
         if (! $university->exists && $request->has('replicate') && $replicated = $university->resolveRouteBinding($request->input('replicate'))) {
             $university = $replicated->replicate();
         }
-        return view('cortex/universities::adminarea.pages.university', compact('university'));
+        return view('cortex/universities::adminarea.pages.university', compact('university', 'countries'));
     }
 
     /**
@@ -157,6 +165,17 @@ class UniversitiesController extends AuthorizedController
     {
         // Prepare required input fields
         $data = $request->validated();
+
+        $countries = collect(countries())->map(function ($country, $code) {
+            return [
+                'id' => $code,
+                'text' => $country['name'],
+            ];
+        })->values();
+
+        $country = $countries->firstWhere('id', $data['country_code']);
+
+        $data['country'] = $country['text'];
 
         // Save university
         $university->fill($data)->save();
