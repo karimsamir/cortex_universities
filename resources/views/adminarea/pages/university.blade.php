@@ -15,6 +15,9 @@
         window.countries = @json($countries);
         window.selectedCountry = '{{ old('country_code', $university->country_code) }}';
     </script>
+    <script>
+        window.languages = @json($languages ?? []);
+    </script>
 @endpush
 
 {{-- Main Content --}}
@@ -108,7 +111,7 @@
                                 <div class="form-group{{ $errors->has('country_code') ? ' has-error' : '' }}">
                                     {{ Form::label('country_code', trans('cortex/auth::common.country'), ['class' => 'control-label']) }}
                                     {{ Form::hidden('country_code', '', ['class' => 'skip-validation', 'id' => 'country_code_hidden']) }}
-                                    {{ Form::select('country_code', [], null, ['class' => 'form-control select2', 'placeholder' => trans('cortex/auth::common.select_country'), 'data-allow-clear' => 'true', 'data-width' => '100%']) }}
+                                    {{ Form::select('country_code', [], null, ['class' => 'form-control select2', 'placeholder' => trans('cortex/universities::common.select_country'), 'data-allow-clear' => 'true', 'data-width' => '100%']) }}
 
                                     @if ($errors->has('country_code'))
                                         <span class="help-block">{{ $errors->first('country_code') }}</span>
@@ -130,12 +133,6 @@
                                 </div>
 
                             </div>
-
-
-                        </div>
-
-                        <div class="row">
-
 
                         </div>
 
@@ -280,13 +277,16 @@
 
                             <div class="col-md-4">
 
-                                {{-- languages --}}
-                                <div class="form-group{{ $errors->has('languages') ? ' has-error' : '' }}">
-                                    {{ Form::label('languages', trans('cortex/universities::common.languages'), ['class' => 'control-label']) }}
-                                    {{ Form::text('languages', null, ['class' => 'form-control', 'placeholder' => trans('cortex/universities::common.languages'), 'autofocus' => 'autofocus']) }}
+                                {{-- language_code --}}
+                                <div class="form-group{{ $errors->has('language_code') ? ' has-error' : '' }}">
+                                    {{ Form::label('language_code', trans('cortex/auth::common.language'), ['class' => 'control-label']) }}
+                                    {{ Form::hidden('language_code', '', ['class' => 'skip-validation', 'id' => 'language_code_hidden']) }}
 
-                                    @if ($errors->has('languages'))
-                                        <span class="help-block">{{ $errors->first('languages') }}</span>
+                                    {{ Form::select('language_code[]', $languages, $selectedLanguages, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-close-on-select' => 'false', 'data-width' => '100%']) }}
+
+
+                                    @if ($errors->has('language_code'))
+                                        <span class="help-block">{{ $errors->first('language_code') }}</span>
                                     @endif
                                 </div>
 

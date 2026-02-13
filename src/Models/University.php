@@ -115,7 +115,7 @@ class University extends Model
             'email' => 'nullable|email|max:255',
             'fax' => 'nullable|string|max:50',
             'funding' => 'nullable|string|max:255',
-            'languages' => 'nullable|array',
+            'language_code' => 'nullable|array',
             'academic_year' => 'nullable|string',
             'accrediting_agency' => 'nullable|string',
         ]);
@@ -149,6 +149,8 @@ class University extends Model
 
     /**
      * Scope a query to only include universities from a specific country.
+     */
+    public function scopeFromCountry($query, string $country)
     {
         return $query->where('country', $country);
     }

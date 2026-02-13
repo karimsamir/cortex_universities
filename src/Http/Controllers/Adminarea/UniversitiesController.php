@@ -121,10 +121,13 @@ class UniversitiesController extends AuthorizedController
             ];
         })->values();
 
+        $languages = collect(languages())->pluck('name', 'iso_639_1');
+        $selectedLanguages = $university->languages;
+
         if (! $university->exists && $request->has('replicate') && $replicated = $university->resolveRouteBinding($request->input('replicate'))) {
             $university = $replicated->replicate();
         }
-        return view('cortex/universities::adminarea.pages.university', compact('university', 'countries'));
+        return view('cortex/universities::adminarea.pages.university', compact('university', 'countries', 'languages', 'selectedLanguages'));
     }
 
     /**
@@ -176,6 +179,9 @@ class UniversitiesController extends AuthorizedController
         $country = $countries->firstWhere('id', $data['country_code']);
 
         $data['country'] = $country['text'];
+
+        $data['languages'] = $data['language_code'];
+        unset($data['language_code']);
 
         // Save university
         $university->fill($data)->save();
