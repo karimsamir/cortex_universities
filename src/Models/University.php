@@ -102,7 +102,7 @@ class University extends Model
         $this->mergeRules([
             'name' => 'required|string|max:256',
             'alt_name' => 'nullable|string|max:256',
-            'slug' => 'required|string|max:256',
+            'slug' => 'required|string|max:256|unique:universities,slug,' . $this->id,
             'country' => 'nullable|string|max:255',
             'country_code' => 'required|string|max:10',
             'state' => 'nullable|string|max:255',
