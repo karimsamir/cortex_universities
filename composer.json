@@ -35,9 +35,9 @@
   ],
   "require": {
     "php": "^8.3",
-    "illuminate/database": "^11.0.0 || ^12.0.0",
-    "illuminate/support": "^11.0.0 || ^12.0.0",
-    "illuminate/console": "^11.0.0 || ^12.0.0",
+    "illuminate/database": "^10.0.0 || ^11.0.0 || ^12.0.0",
+    "illuminate/support": "^10.0.0 || ^11.0.0 || ^12.0.0",
+    "illuminate/console": "^10.0.0 || ^11.0.0 || ^12.0.0",
     "rinvex/universities": "^6.0.0",
     "cortex/foundation": "dev-master",
     "diglactic/laravel-breadcrumbs": "^10.0.0",
