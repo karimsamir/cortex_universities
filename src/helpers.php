@@ -6,7 +6,7 @@ use Cortex\Universities\Models\University;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Collection;
 
-if (! function_exists('university')) {
+if (! function_exists('universityDb')) {
     /**
      * Get university by its name or ID.
      *
@@ -16,11 +16,11 @@ if (! function_exists('university')) {
      *
      * @return \Cortex\Universities\Models\University|array|null
      */
-    function university($identifier, $asModel = true, $useCache = true)
+    function universityDb($identifier, $asModel = true, $useCache = true)
     {
         $cacheKey = is_numeric($identifier)
             ? "university.id.{$identifier}"
-            : "university.name." . md5(strtolower((string) $identifier));
+            : "university.slug." . md5(strtolower((string) $identifier));
 
         $cacheDuration = config('cortex.universities.cache_duration');
 
@@ -37,7 +37,7 @@ if (! function_exists('university')) {
         if (is_numeric($identifier)) {
             $university = $query->find($identifier);
         } else {
-            $university = $query->where('name', $identifier)->first();
+            $university = $query->where('slug', $identifier)->first();
         }
 
         if ($university && $useCache && $cacheDuration) {
@@ -48,7 +48,7 @@ if (! function_exists('university')) {
     }
 }
 
-if (! function_exists('universities')) {
+if (! function_exists('universitiesDb')) {
     /**
      * Get universities for the given country.
      *
@@ -58,7 +58,7 @@ if (! function_exists('universities')) {
      *
      * @return \Illuminate\Database\Eloquent\Collection|array
      */
-    function universities($countryCode = null, $asModels = true, $useCache = true)
+    function universitiesDb($countryCode = null, $asModels = true, $useCache = true)
     {
         $cacheKey = $countryCode
             ? "universities.country." . md5(strtolower($countryCode))
@@ -109,14 +109,14 @@ if (! function_exists('clearUniversitiesCache')) {
     }
 }
 
-if (! function_exists('getUniversitiesByCountry')) {
+if (! function_exists('getUniversitiesByCountryDb')) {
     /**
      * Get universities grouped by country.
      *
      * @param bool $useCache
      * @return array
      */
-    function getUniversitiesByCountry($useCache = true): array
+    function getUniversitiesByCountryDb($useCache = true): array
     {
         $cacheKey = 'universities.by_country';
         $cacheDuration = config('cortex.universities.cache_duration');
@@ -143,7 +143,7 @@ if (! function_exists('getUniversitiesByCountry')) {
     }
 }
 
-if (! function_exists('searchUniversities')) {
+if (! function_exists('searchUniversitiesDb')) {
     /**
      * Search universities by name, country, or other fields.
      *
@@ -152,7 +152,7 @@ if (! function_exists('searchUniversities')) {
      * @param bool $useCache
      * @return \Illuminate\Database\Eloquent\Collection|array
      */
-    function searchUniversities(string $query, array $fields = ['name', 'country', 'state', 'city'], $useCache = true)
+    function searchUniversitiesDb(string $query, array $fields = ['name', 'country', 'state', 'city'], $useCache = true)
     {
         if (!config('cortex.universities.search.enabled')) {
             return $useCache ? collect([]) : [];
