@@ -192,6 +192,12 @@ class University extends Model
         return $this->name;
     }
 
+    // Getter methods similar to Rinvex University class
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
     public function getAltName(): ?string
     {
         return $this->alt_name;
